@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 import json 
 
 
-USER_TOKEN = input("Enter your cms access token")
+USER_TOKEN = input("Enter your cms access token: ")
 BASE_URL = "https://td.bits-hyderabad.ac.in/moodle/"
 USER_ID = None
 
@@ -25,7 +25,8 @@ def scrap_urls(content):
                 for attachment in attachments:
                     if "type" in attachment and attachment["type"] == "file":
                         filename = attachment["filename"]
-                        file_url = attachment["fileurl"]
+                        print(filename)
+                        file_url = attachment["fileurl"] + "&token=" + USER_TOKEN 
                         FILES.insert(len(FILES), {
                             "filename" : filename,
                             "fileurl" : file_url
@@ -39,7 +40,7 @@ def download_files(files, folder):
     for file in files:
         filename = file["filename"]
         fileurl = file["fileurl"]
-        urllib.request.urlretrieve(url, os.path.join(os.getcwd(), folder, filename))  
+        urllib.request.urlretrieve(fileurl, os.path.join(os.getcwd(), folder, filename))  
         print("Downloaded", i, "out of", len(files))  
         i = i + 1
                        
@@ -64,7 +65,7 @@ print("You are enrolled in following courses")
 for course in courses :
     print( course["id"], course["shortname"])
 
-COURSE_ID = input("Enter courseid of the course to download, enter `all` to download all courses")
+COURSE_ID = input("Enter courseid of the course to download, enter `all` to download all courses: ")
 COURSES = []
 for course in courses:
     if COURSE_ID == "all":
