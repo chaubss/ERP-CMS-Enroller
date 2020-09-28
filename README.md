@@ -1,6 +1,6 @@
 # ERP To CMS Enroller
 A python script that scraps a student's courses from ERP and automatically enrolls them to those sections on CMS.  
-It also includes a handy ```download.py``` file that lets the user to download course attachments easily. (by [prathonit](https://github.com/prathonit))
+It also includes a handy ```download.py``` file that lets the user download course attachments easily. (by [prathonit](https://github.com/prathonit))
 
 ## Installation
 1. Clone this repository.
